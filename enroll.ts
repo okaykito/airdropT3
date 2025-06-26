@@ -24,6 +24,13 @@ const mintTs = Keypair.generate();
 const SYSTEM_PROGRAM_ID = SystemProgram.programId;
 const keypair = payer; // Use payer as keypair for consistency
 
+const authority_seeds = [
+    Buffer.from("collection"),
+    mintCollection.toBuffer(),
+];
+const [authority_key, _authority_bump] = PublicKey.findProgramAddressSync(authority_seeds, program.programId);
+
+
 // Execute the initialize transaction
 // (async () => {
 // try {
@@ -54,6 +61,7 @@ user: keypair.publicKey,
 account: account_key,
 mint: mintTs.publicKey,
 collection: mintCollection,
+authority: authority_key,
 mpl_core_program: MPL_CORE_PROGRAM_ID,
 system_program: SYSTEM_PROGRAM_ID,
 })
@@ -65,3 +73,5 @@ https://explorer.solana.com/tx/${txhash}?cluster=devnet`);
 console.error(`Oops, something went wrong: ${e}`);
 }})
 
+// https://explorer.solana.com/tx/A6jAEwjQjm7vMvPoveTKV6P9qpUnusRHjGu1VdNCVhJi93zfMXfB4sFyNARVFgKtBnipQTKuyHrauh1sH9gktMm?cluster=devnet
+// https://explorer.solana.com/tx/42fyNnW1q9gfsQm5hfLJhavXbKRhCyZCqpUiJ3TTiBVFpwswzgRJZfRwUgHeVTuR7GkHwQBeZzegXiFMgAY1yXyy?cluster=devnet
