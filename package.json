@@ -9,7 +9,7 @@
     "airdrop": "ts-node ./airdrop.ts",
     "transfer": "ts-node ./transfer.ts",
     "enroll": "ts-node ./enroll.ts"
-},
+  },
   "devDependencies": {
     "ts-node": "^10.9.1"
   },
@@ -17,6 +17,7 @@
     "@solana/web3.js": "^1.75.2",
     "@types/node": "^18.15.11",
     "bs58": "^6.0.0",
+    "prompt-sync": "^4.2.0",
     "typescript": "^5.0.4"
   }
 }
