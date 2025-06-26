@@ -24,3 +24,44 @@ const mintTs = Keypair.generate();
 const SYSTEM_PROGRAM_ID = SystemProgram.programId;
 const keypair = payer; // Use payer as keypair for consistency
 
+// Execute the initialize transaction
+(async () => {
+try {
+const txhash = await program.methods
+.initialize("github_username")
+.accountsPartial({
+user: keypair.publicKey,
+account: account_key,
+system_program: SYSTEM_PROGRAM_ID,
+})
+.signers([keypair])
+.rpc();
+console.log(`Success! Check out your TX here:
+https://explorer.solana.com/tx/${txhash}?cluster=devnet`);
+} catch (e) {
+console.error(`Oops, something went wrong: ${e}`);
+}
+})();
+
+// Execute the submitTs transaction
+// (async () => {
+// try {
+// const txhash = await program.methods
+
+// .submitTs()
+// .accountsPartial({
+// user: keypair.publicKey,
+// account: account_key,
+// mint: mintTs.publicKey,
+// collection: mintCollection,
+// mpl_core_program: MPL_CORE_PROGRAM_ID,
+// system_program: SYSTEM_PROGRAM_ID,
+// })
+// .signers([keypair, mintTs])
+// .rpc();
+// console.log(`Success! Check out your TX here:
+// https://explorer.solana.com/tx/${txhash}?cluster=devnet`);
+// } catch (e) {
+// console.error(`Oops, something went wrong: ${e}`);
+// }})
+
