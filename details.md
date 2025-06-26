@@ -1,9 +1,20 @@
-yarn add @types/node typescript @solana/web3.js bs58
-yarn add -D ts-node
-
-touch keygen.ts
-touch airdrop.ts
-touch transfer.ts
-touch enroll.ts
-yarn tsc --init --rootDir ./ --outDir ./dist --esModuleInterop --lib
-ES2019 --module commonjs --resolveJsonModule true --noImplicitAny true
+{
+"name": "airdrop",
+"version": "1.0.0",
+"main": "index.js",
+"license": "MIT",
+"scripts": {
+"keygen": "ts-node ./keygen.ts",
+"airdrop": "ts-node ./airdrop.ts",
+"transfer": "ts-node ./transfer.ts",
+"enroll": "ts-node ./enroll.ts"
+},
+"dependencies": {
+"@solana/web3.js": "^1.75.0",
+"@types/node": "^18.15.11",
+"typescript": "^5.0.4"
+},
+"devDependencies": {
+"ts-node": "^10.9.1"
+}
+}
